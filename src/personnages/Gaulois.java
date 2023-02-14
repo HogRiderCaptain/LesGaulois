@@ -56,10 +56,10 @@ public class Gaulois{
 		System.out.println(asterix);
 		System.out.println(asterix.getNom());
 		
-		System.out.println(asterix);
-		System.out.println(asterix.getNom());
+		asterix.parler("En sah le hog rider il court vite !");
 		
-		System.out.println(asterix);
-		System.out.println(asterix.getNom());
+		Romain romain = new Romain("Romain",5);
+		asterix.frapper(romain);
+		
 	}
 }
