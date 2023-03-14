@@ -1,42 +1,21 @@
 package personnages;
 
-public class Gaulois{
+public class Gaulois {
 	private String nom;
 	private int force;
-	private int effetPotion=1;
+	private int effetPotion = 1;
 
 	public Gaulois(String nom, int force) {
-		super();
 		this.nom = nom;
 		this.force = force;
-	}
-
-	public int getForce() {
-		return force;
-	}
-
-	public int getEffetPotion() {
-		return effetPotion;
 	}
 
 	public String getNom() {
 		return nom;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public void setForce(int force) {
-		this.force = force;
-	}
-
-	public void setEffetPotion(int effetPotion) {
-		this.effetPotion = effetPotion;
-	}
-
 	public void parler(String texte) {
-		System.out.println(prendreParole() + "« " + texte + "»");
+		System.out.println(prendreParole() + "<< " + texte + " >>");
 	}
 
 	private String prendreParole() {
@@ -44,22 +23,38 @@ public class Gaulois{
 	}
 
 	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la mâchoire de "+ romain.getNom());
-	}
-		@Override
-	public String toString() {
-			return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]";
+		System.out.println(nom + " envoie un grand coup dans la machoire de " + romain.getNom());
+		romain.recevoirCoup((force / 3) + effetPotion);
 	}
 
-	public static void main(String[] args) {
-		Gaulois asterix = new Gaulois("Astérix", 8);
-		System.out.println(asterix);
-		System.out.println(asterix.getNom());
-		
-		asterix.parler("En sah le hog rider il court vite !");
-		
-		Romain romain = new Romain("Romain",5);
-		asterix.frapper(romain);
+	@Override 
+	public String toString() { return "Gaulois [nom=" + nom + 
+			", force=" + force + ", effetPotion=" + effetPotion + "]"; 
+	}
+	
+	public void boirePotion(int forcePotion) {
+		effetPotion = forcePotion;
+		parler("<< Merci Druide, je sens que ma force est " + effetPotion + " fois decuplee.");
 		
 	}
+	
+	 
+
+	public static void main(String[] args) {
+		// TODO creer un main permettant de tester la classe Gaulois
+		Gaulois asterix = new Gaulois("Asterix", 8);
+		Romain cesar = new Romain("Cesar", 20);
+		System.out.println(asterix.getNom());
+		System.out.println(asterix);
+		asterix.parler("hello");
+		asterix.frapper(cesar);
+		Druide panoramix = new Druide("Panoramix", 5, 10);
+		panoramix.preparerPotion();
+		asterix.boirePotion(4);
+		asterix.frapper(cesar);
+		
+
+	}
 }
+
+
