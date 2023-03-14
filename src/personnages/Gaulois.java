@@ -3,7 +3,9 @@ package personnages;
 public class Gaulois {
 	private String nom;
 	private int force;
+	private int nbTrophees;
 	private int effetPotion = 1;
+	private Equipement[] trophees = new Equipement[100];
 
 	public Gaulois(String nom, int force) {
 		this.nom = nom;
@@ -18,30 +20,32 @@ public class Gaulois {
 		System.out.println(prendreParole() + "<< " + texte + " >>");
 	}
 
+
 	private String prendreParole() {
-		return "Le gaulois " + nom + " : ";
+		String texte = "Le gaulois " + nom + " : ";
+		return texte;
 	}
 
-	public void frapper(Romain romain) {
-		System.out.println(nom + " envoie un grand coup dans la machoire de " + romain.getNom());
-		romain.recevoirCoup((force / 3) + effetPotion);
-	}
-
-	@Override 
-	public String toString() { return "Gaulois [nom=" + nom + 
-			", force=" + force + ", effetPotion=" + effetPotion + "]"; 
-	}
 	
+	public void frapper(Romain romain) {
+		System.out.println(nom + " envoie un grand coup dans la mâchoire de " + romain.getNom());
+				Equipement newtrophee[] = romain.recevoirCoup((force/3)*effetPotion);
+		for (int i = 0; newtrophee != null && i < newtrophee.length; i++, nbTrophees++) {
+			this.trophees[nbTrophees] = newtrophee[i];
+		}
+	}
+
+	public String toString() { return "Gaulois [nom=" + nom + ", force=" + force + ", effetPotion=" + effetPotion + "]"; 
+	}
+
 	public void boirePotion(int forcePotion) {
 		effetPotion = forcePotion;
 		parler("<< Merci Druide, je sens que ma force est " + effetPotion + " fois decuplee.");
-		
+
 	}
-	
-	 
+
 
 	public static void main(String[] args) {
-		// TODO creer un main permettant de tester la classe Gaulois
 		Gaulois asterix = new Gaulois("Asterix", 8);
 		Romain cesar = new Romain("Cesar", 20);
 		System.out.println(asterix.getNom());
@@ -52,7 +56,7 @@ public class Gaulois {
 		panoramix.preparerPotion();
 		asterix.boirePotion(4);
 		asterix.frapper(cesar);
-		
+
 
 	}
 }

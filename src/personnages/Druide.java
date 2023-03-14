@@ -11,8 +11,7 @@ public class Druide {
 		this.nom = nom;
 		this.effetPotionMin = effetPotionMin;
 		this.effetPotionMax = effetPotionMax;
-		parler("Bonjour, je suis le druide " + nom + " et ma potion peut aller d'une force " + effetPotionMin + " a "
-				+ effetPotionMax + ".");
+		parler("Bonjour, je suis le druide " + nom + " et ma potion peut aller d'une force " + effetPotionMin + " a " + effetPotionMax + ".");
 	}
 
 	public String getNom() {
@@ -31,7 +30,7 @@ public class Druide {
 		Random random = new Random(); 
 		forcePotion = random.nextInt(effetPotionMax + 1);
 		while (forcePotion < 5) {
-			forcePotion = random.nextInt(effetPotionMax + 1);
+			forcePotion = random.nextInt(effetPotionMax - effetPotionMin) + effetPotionMin;
 		}
 		
 		
